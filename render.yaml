@@ -1,14 +1,12 @@
-# Render blueprint: deploy the Spring Boot backend from the backend/ directory.
-# In Render dashboard: New > Blueprint > Connect repo, or create Web Service and set below manually.
+# Render blueprint: deploy the Spring Boot backend.
+# Build/start scripts run from repo root so Root Directory can stay default.
 
 services:
   - type: web
     name: clothing-store-api
     runtime: java
-    # Root directory so Render runs build/start from backend/
-    rootDir: backend
-    buildCommand: ./mvnw -B package -DskipTests
-    startCommand: java -jar target/clothing-store-api-1.0.0.jar
+    buildCommand: ./build.sh
+    startCommand: ./start.sh
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: supabase
