@@ -102,7 +102,7 @@ Host the API on a Java-friendly platform. Examples:
 
 | Platform | Notes |
 |----------|--------|
-| [Render](https://render.com) | **Build:** `./build.sh`. **Start:** `./start.sh` (from repo root; no Root Directory needed). Or set Root Directory to `backend` and use `./mvnw -B package -DskipTests` / `java -jar target/clothing-store-api-1.0.0.jar`. Add env vars (Supabase, mail, `APP_CORS_ALLOWED_ORIGINS`). See `render.yaml`. |
+| [Render](https://render.com) | **Use Docker** (Render's native env has no Java). **Root Directory:** `backend`. **Runtime:** Docker. **Dockerfile path:** `backend/Dockerfile` (or leave default if Root = `backend`). Add env vars (Supabase, mail, `APP_CORS_ALLOWED_ORIGINS`). See `render.yaml` and [backend/Dockerfile](backend/Dockerfile). |
 | [Railway](https://railway.app) | Connect repo, set root to `backend`, add env vars. |
 | [Fly.io](https://fly.io) | Add a `Dockerfile` in `backend/` or use `fly launch` and set build/run. |
 

@@ -1,14 +1,12 @@
-# Render blueprint: deploy the Spring Boot backend.
-# Build/start scripts run from repo root so Root Directory can stay default.
+# Render: use Docker (Render's native env has no Java). Root Directory = backend, Dockerfile = backend/Dockerfile.
 
 services:
   - type: web
     name: clothing-store-api
-    runtime: java
-    buildCommand: ./build.sh
-    startCommand: ./start.sh
+    runtime: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: supabase
-      # Add in Render dashboard: SUPABASE_DB_URL, SUPABASE_DB_USER, SUPABASE_DB_PASSWORD (or use application-supabase.properties via env).
-      # Add: APP_CORS_ALLOWED_ORIGINS = https://your-frontend.vercel.app
+      # Add in dashboard: DB/mail vars or use env; APP_CORS_ALLOWED_ORIGINS = https://your-frontend.vercel.app
