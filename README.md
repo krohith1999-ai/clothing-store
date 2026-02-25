@@ -89,3 +89,63 @@ After an order is placed, the backend can send an HTML receipt to the customer�
    - `app.mail.from=your@gmail.com`
 
 2. See `application-mail.example.properties` for a full example. If mail is not configured, orders still succeed; no email is sent.
+
+---
+
+## Deploy to production
+
+Your **database (Supabase)** is already in the cloud. To put the app on the internet you deploy the **backend** and **frontend** separately, then point the frontend at the backend URL.
+
+### 1. Deploy the backend (Spring Boot)
+
+Host the API on a Java-friendly platform. Examples:
+
+| Platform | Notes |
+|----------|--------|
+| [Render](https://render.com) | Free tier: Web Service, build command `./mvnw -B package`, start `java -jar target/*.jar`. Add env vars for Supabase and (optional) mail. |
+| [Railway](https://railway.app) | Connect repo, set root to `backend`, add env vars. |
+| [Fly.io](https://fly.io) | Add a `Dockerfile` in `backend/` or use `fly launch` and set build/run. |
+
+**Required environment variables** (set in the platform’s dashboard):
+
+- `SPRING_PROFILES_ACTIVE=supabase` (or rely on default if you use Supabase)
+- Supabase DB: copy from your `application-supabase.properties` (or use the same env vars the app already supports for DB and mail).
+- **CORS:** set `APP_CORS_ALLOWED_ORIGINS` to your frontend URL(s), comma-separated, e.g.  
+  `https://your-app.vercel.app,https://your-app.netlify.app`
+
+After deploy, note the backend URL (e.g. `https://your-api.onrender.com`).
+
+### 2. Deploy the frontend (React / Vite)
+
+Host the built static files on a front-end host. Examples:
+
+| Platform | Notes |
+|----------|--------|
+| [Vercel](https://vercel.com) | Connect GitHub repo, set **Root Directory** to `frontend`, **Build Command** `npm run build`, **Output Directory** `dist`. Add env var below. |
+| [Netlify](https://netlify.com) | Connect repo, base directory `frontend`, build command `npm run build`, publish directory `frontend/dist`. Add env var below. |
+| [Cloudflare Pages](https://pages.cloudflare.com) | Connect repo, build config: root `frontend`, command `npm run build`, output `dist`. Add env var below. |
+
+**Required environment variable** (set in the platform’s dashboard):
+
+- **`VITE_API_URL`** = your backend URL with no trailing slash, e.g. `https://your-api.onrender.com`  
+
+The frontend will call `VITE_API_URL/api/...` in production. Without this, it will try `/api` on the same host (only works if you proxy or serve both from one place).
+
+### 3. Build and run backend as a single JAR (for Render/Railway/etc.)
+
+The backend must be built with Maven and run as a JAR. Ensure `pom.xml` has the Spring Boot plugin (it does). Then:
+
+```bash
+cd backend
+./mvnw -B package -DskipTests
+java -jar target/clothing-store-api-1.0.0.jar
+```
+
+Platforms like Render can use the same: **Build** `./mvnw -B package -DskipTests`, **Start** `java -jar target/clothing-store-api-1.0.0.jar`. Set all env vars (Supabase, mail, `APP_CORS_ALLOWED_ORIGINS`) in the dashboard.
+
+### 4. Quick checklist
+
+- [ ] Backend deployed and returning e.g. `GET /api/products` successfully.
+- [ ] `APP_CORS_ALLOWED_ORIGINS` on backend includes your frontend URL.
+- [ ] Frontend deployed with `VITE_API_URL` set to that backend URL.
+- [ ] Supabase (and optional mail) env vars set on the backend in production.

@@ -1,4 +1,5 @@
-const API_BASE = '/api';
+// In development, Vite proxies /api to the backend. In production, set VITE_API_URL to your backend URL.
+const API_BASE = import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api` : '/api';
 
 export async function fetchProducts(params = {}) {
   const searchParams = new URLSearchParams();
