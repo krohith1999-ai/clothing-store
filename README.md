@@ -102,7 +102,7 @@ Host the API on a Java-friendly platform. Examples:
 
 | Platform | Notes |
 |----------|--------|
-| [Render](https://render.com) | **Use Docker** (Render's native env has no Java). **Root Directory:** `backend`. **Runtime:** Docker. **Dockerfile path:** `backend/Dockerfile` (or leave default if Root = `backend`). Add env vars (Supabase, mail, `APP_CORS_ALLOWED_ORIGINS`). See `render.yaml` and [backend/Dockerfile](backend/Dockerfile). |
+| [Render](https://render.com) | **Use Docker**, Root = `backend`. Set **`SPRING_PROFILES_ACTIVE`** = `supabase-render`. **Required env vars:** `SPRING_DATASOURCE_URL` (e.g. `jdbc:postgresql://db.xxx.supabase.co:5432/postgres?sslmode=require`), `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD`, `APP_CORS_ALLOWED_ORIGINS`. If you see "Network unreachable", the Dockerfile forces IPv4; use Supabase **Connection pooler** (port 6543) URL if needed. See [backend/Dockerfile](backend/Dockerfile). |
 | [Railway](https://railway.app) | Connect repo, set root to `backend`, add env vars. |
 | [Fly.io](https://fly.io) | Add a `Dockerfile` in `backend/` or use `fly launch` and set build/run. |
 

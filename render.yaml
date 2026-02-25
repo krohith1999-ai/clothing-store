@@ -8,5 +8,5 @@ services:
     dockerContext: backend
     envVars:
       - key: SPRING_PROFILES_ACTIVE
-        value: supabase
-      # Add in dashboard: DB/mail vars or use env; APP_CORS_ALLOWED_ORIGINS = https://your-frontend.vercel.app
+        value: supabase-render
+      # Required: SPRING_DATASOURCE_URL, SPRING_DATASOURCE_USERNAME, SPRING_DATASOURCE_PASSWORD, APP_CORS_ALLOWED_ORIGINS

@@ -14,4 +14,5 @@ WORKDIR /app
 COPY --from=build /app/target/clothing-store-api-1.0.0.jar app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Prefer IPv4 to avoid "Network unreachable" when connecting to Supabase from some clouds
+ENTRYPOINT ["java", "-Djava.net.preferIPv4Stack=true", "-jar", "app.jar"]
