@@ -1,0 +1,222 @@
+.checkout-page {
+  padding: 2rem 1.5rem 4rem;
+  min-height: 60vh;
+}
+
+.checkout-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.checkout-title {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-empty {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.checkout-section {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.checkout-section-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.checkout-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkout-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.checkout-input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.checkout-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.checkout-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .checkout-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout-summary {
+  margin-top: 0;
+}
+
+.checkout-cart-list {
+  list-style: none;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.checkout-cart-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+}
+
+.checkout-cart-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.checkout-cart-qty {
+  color: var(--text-muted);
+}
+
+.checkout-cart-subtotal {
+  font-weight: 500;
+}
+
+.checkout-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.checkout-error {
+  color: #c53030;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.checkout-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.checkout-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.checkout-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.checkout-btn-primary {
+  width: 100%;
+  padding: 0.85rem;
+}
+
+.confirmation-page {
+  padding: 3rem 1.5rem 4rem;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.confirmation-inner {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.confirmation-title {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.confirmation-message {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.confirmation-id {
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+.confirmation-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.confirmation-actions a,
+.confirmation-actions button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.confirmation-actions a:hover,
+.confirmation-actions button:hover {
+  opacity: 0.9;
+}
+
+.confirmation-actions .secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+.confirmation-actions .secondary:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
