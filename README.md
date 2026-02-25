@@ -102,7 +102,7 @@ Host the API on a Java-friendly platform. Examples:
 
 | Platform | Notes |
 |----------|--------|
-| [Render](https://render.com) | Free tier: Web Service, build command `./mvnw -B package`, start `java -jar target/*.jar`. Add env vars for Supabase and (optional) mail. |
+| [Render](https://render.com) | **Root Directory:** `backend`. **Build:** `./mvnw -B package -DskipTests`. **Start:** `java -jar target/clothing-store-api-1.0.0.jar`. Add env vars (Supabase, mail, `APP_CORS_ALLOWED_ORIGINS`). See `render.yaml` for a blueprint. |
 | [Railway](https://railway.app) | Connect repo, set root to `backend`, add env vars. |
 | [Fly.io](https://fly.io) | Add a `Dockerfile` in `backend/` or use `fly launch` and set build/run. |
 
